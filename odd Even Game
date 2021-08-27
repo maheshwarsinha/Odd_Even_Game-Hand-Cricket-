@@ -1,0 +1,341 @@
+/**
+ * @(#)Odd_Eve_Game.java
+ *
+ * Odd_Eve_Game application
+ *
+ * @author 
+ * @version 1.00 2021/8/12
+ */
+ 
+ 
+ 
+ 
+ //hello programmer i have given comment to make you understant this programme
+ import java.util.*;
+public class Odd_Eve_Game {
+	
+	static int inputbat/*Takes User input while he bats*/, inputball/*Takes User input while he balls*/; 
+		static int range, min=1, max=6, comp, sumUbatt = 0/*Score Of User*/, sumUball = 0/*Score Of Comp*/;
+    
+    public static void main(String[] args) {
+    	Scanner sc = new Scanner (System.in);
+    	int Trange, Tmax=2, Tmin=1, Toss;// To Toss
+    	int Lrange, Lmax=2, Lmin=1, Loss;//  if comp won the toss he will choose wether he wants to batt or ball first..
+    	//Demo
+    	System.out.println ("To Play The Game You Need To Pass A Test Enter to Continue ......");
+    	System.out.println ("Enter Your Choise : ");
+    	inputbat = sc.nextInt();
+    	inputball=inputbat;// No Use Only To Able To Run The Function Of User Balling
+    	
+    	range = max-min+1;
+    	comp=(int)((Math.random()*range)+min);
+    	System.out.println ("My Choise : "+comp);
+    	
+    	
+    	if(inputbat == comp){
+    		System.out.println ("You Loose");
+    		inputbat = 0;
+    		inputball = 0; // No Use Only To Able To Run The Function Of User Balling
+    	}
+    	else 
+    	{
+    		System.out.println ("You Won");
+    		inputbat = 0;
+    		inputball = 0;
+    	}
+    	System.out.println ("The Game Starts Now......(Remeber Under 6)");
+    	
+    	
+    	// Toss
+    	System.out.println ("Toss...");
+    	System.out.println ("Heads(1) or Tails(2)");
+    	int Tossvar = sc.nextInt();
+    	Trange = Tmax-Tmin+1;
+    	Toss = (int)(Math.random() * Trange) + Tmin; 
+    		if(Toss==1&&Tossvar==1 || Toss==2&&Tossvar==2 )//If User Won The Toss
+    		{
+    			if(Tossvar==1)
+    			{
+    				System.out.println ("Its a Head You Won");
+    			}
+    			else if(Tossvar == 2)
+    			{
+    				System.out.println ("Its a Tails You Won");
+    			}
+    			
+    			System.out.println ("Batting(1) Or Balling(2)");
+    			int Wvar = sc.nextInt();
+    			if(Wvar == 1)
+    			{
+    				UBatting();
+    				System.out.println ("--------------------");
+    				System.out.println ("My Turn.. Don't You Worry .. I Can't Cheat");
+    				CBatting();
+    				System.out.println ("--------------------");
+    			}
+    			else if(Wvar == 2)
+    			{
+    				CBatting();
+    				System.out.println ("--------------------");
+    				System.out.println ("Your Turn..");
+    				UBatting();
+    				System.out.println ("--------------------");
+    			}
+    			else{
+    				System.out.println ("No Option Assuming You Take Batting....");
+    				UBatting();
+    				System.out.println ("--------------------");
+    				System.out.println ("My Turn.. Don't You Worry .. I Can't Cheat");
+    				CBatting();
+    				System.out.println ("--------------------");
+    			}
+    		}
+    		else{
+    			// If user Loose The Toss
+    			System.out.println ("Sorry You Lost The Toss");
+    			
+    			
+    			// To get Computer Choise
+    			Lrange = Lmax-Lmin+1;
+    	        Loss = (int)(Math.random() * Lrange) + Lmin;
+    	        if(Loss == 1)
+    	        {
+    	        	System.out.println ("I Choose To Bat First");
+    	        	CBatting();
+    	        	System.out.println ("--------------------");
+    	        	System.out.println ("Your Turn..");
+    	        	UBatting();
+    	        	System.out.println ("--------------------");
+    	        	
+    	        }
+    	        else{
+    	        	System.out.println ("I Choose To Ball First");
+    	        	UBatting();
+    	        	System.out.println ("--------------------");
+    	        	System.out.println ("My Turn.. Don't You Worry .. I Can't Cheat");
+    	        	CBatting();
+    	        	System.out.println ("--------------------");
+    	        }
+    		}
+    		
+    		//results
+    		
+    	    	if(sumUbatt == sumUball)// very very Rare Case
+    	    	{
+    			System.out.println ("We Both Are A Hero..");
+    			System.out.println ("You Scored : "+sumUbatt+"! And I Too Scored : "+sumUball+"!");
+    			if(sumUbatt>=50)//half century
+    			{
+    				System.out.println ("We Both Hitted A Half Century");
+    			}
+    			else if(sumUbatt>=100)//century
+    			{
+    				System.out.println ("We Both Hitted A Century");
+    			}
+    			else if(sumUbatt>=200)// Double Century
+    			{
+    				System.out.println ("We Both Hitted A Double Century");
+    			}
+    			else if(sumUbatt>=300)// Triple Century
+    				{
+    					System.out.println ("We Both Hitted A Triple Century");
+    					}
+    					else if(sumUbatt>300)//finnaly Its over Calmly......(Frustration..)
+    					{
+    						System.out.println ("finnaly Its over Calmly......");
+    					}
+    			System.out.println ("And ThereFore ..Its A Tie..");
+    		}
+    		else if(sumUbatt>sumUball)// occurs Most Of The Time
+    		{
+    			System.out.println ("You Are A Hero");
+    			System.out.println ("You Scored : "+sumUbatt+"! And I Scored Only : "+sumUball);
+    			// Extra Comments Of User After Winning
+    			if(sumUbatt>=50)//half century
+    			{
+    				System.out.println ("You Hitted A Half Century");
+    			}
+    			else if(sumUbatt>=100)//century
+    			{
+    				System.out.println ("You Hitted A Century");
+    			}
+    			else if(sumUbatt>=200)// Double Century
+    			{
+    				System.out.println ("You Hitted A Double Century");
+    			}
+    			else if(sumUbatt>=300)// Triple Century
+    				{
+    					System.out.println ("You Hitted A Triple Century");
+    					}
+    					else if(sumUbatt>300)//finnaly Its over Calmly......(Frustration..)
+    					{
+    						System.out.println ("finnaly Its over Calmly......");
+    					}
+    					
+    					//Extra Comments of Computer After Loosing
+    					if(sumUball>=50)//half century
+		    			{
+		    				System.out.println ("I Hitted A Half Century");
+		    			}
+		    			else if(sumUball>=100)//century
+		    			{
+		    				System.out.println ("I Hitted A Century");
+		    			}
+		    			else if(sumUball>=200)// Double Century
+		    			{
+		    				System.out.println ("I Hitted A Double Century");
+		    			}
+		    			else if(sumUball>=300)// Triple Century
+		    				{
+		    					System.out.println ("I Hitted A Triple Century");
+		    					}
+		    					else if(sumUball>300)//finnaly Its over Calmly......(Frustration..)
+		    					{
+		    						System.out.println ("finnaly Its over Calmly......");
+		    					}
+    					
+    					
+    			System.out.println ("Hurrah !!  You Won");
+    		}
+    		else// Same Rare Case
+    			{
+    			System.out.println ("You Are A Looser");
+    			System.out.println ("I Scored : "+sumUball+"! And You Scored Only : "+sumUbatt);
+    			// Extra Comments Of Computer After Winning
+    			if(sumUball>=50)//half century
+    			{
+    				System.out.println ("I Hitted A Half Century");
+    			}
+    			else if(sumUball>=100)//century
+    			{
+    				System.out.println ("I Hitted A Century");
+    			}
+    			else if(sumUball>=200)// Double Century
+    			{
+    				System.out.println ("I Hitted A Double Century");
+    			}
+    			else if(sumUball>=300)// Triple Century
+    				{
+    					System.out.println ("I Hitted A Triple Century");
+    					}
+    					else if(sumUball>300)//finnaly Its over Calmly......(Frustration..)
+    					{
+    						System.out.println ("finnaly Its over Calmly......");
+    					}
+    					
+    					
+    					// Extra Comments Of User After Loosing
+    					  if(sumUbatt>=50)//half century
+			    			{
+			    				System.out.println ("You Hitted A Half Century");
+			    			}
+			    			else if(sumUbatt>=100)//century
+			    			{
+			    				System.out.println ("You Hitted A Century");
+			    			}
+			    			else if(sumUbatt>=200)// Double Century
+			    			{
+			    				System.out.println ("You Hitted A Double Century");
+			    			}
+			    			else if(sumUbatt>=300)// Triple Century
+			    				{
+			    					System.out.println ("You Hitted A Triple Century");
+			    					}
+			    					else if(sumUbatt>300)//finnaly Its over Calmly......(Frustration..)
+			    					{
+			    						System.out.println ("finnaly Its over Calmly......");
+			    					}
+			    					
+    					
+    			System.out.println ("Alas !!  You Loose");
+    		}
+    
+    }
+    
+    
+         // function of user batting
+           public static void UBatting(){
+           	Scanner sc = new Scanner (System.in);
+           	int c = 0;
+           	System.out.println ("You Are Batting");
+    		while(inputbat!=comp){
+    		
+	    	System.out.println ("Enter Your Choise");
+	    	inputbat = sc.nextInt();
+	    	// range is used for balling
+	    	    range = max-min+1;
+		    	comp=(int)((Math.random()*range)+min);
+		    	
+		    	System.out.println ("My Choise .. : "+comp);
+    	  
+	    	if(inputbat == 0 || inputbat>6 || inputbat<0)//foul condition
+	    	{
+	    		System.out.println ("Foul!!!!");
+	    		c++;
+	    		System.out.println ("Foul Count : "+c+" Dont't Do More Than Two");
+	    		if(c>2)
+	    			{
+	    		System.out.println ("Done Foul Twice .. Your Batting Is over..");
+	    		break;
+		    	}
+		    	else if(c==1)
+		    	{
+		    		System.out.println (c+" Warning Of Foul");
+		    	}
+		    	else if(c==2){
+		    		System.out.println (c+" Warning Of Foul.. Its The Last Warning..");
+		    	}	    		
+	    	}
+	    	else if(inputbat!=comp)
+	    	{
+	    		  
+		    	
+	    		sumUbatt = sumUbatt + inputbat;
+	    	}
+	    	else if(inputbat==comp){
+	    		System.out.println ("That's Out... That's Out...");
+	    	}
+	    	
+	    	
+
+    	}
+    		
+    	}
+    	
+    	// function of computer batting
+    	public static void CBatting(){
+    		Scanner sc = new Scanner (System.in);
+    		System.out.println ("You are Balling");
+    		while(inputball!=comp){
+    				    	
+	    	    
+	    	System.out.println ("Enter Your Choise");
+	    	inputball = sc.nextInt();
+	    	
+	               // range is used for batting
+		    	range = max-min+1;
+		    	comp=(int)((Math.random()*range)+min);	    	
+		    	System.out.println ("My Choise .. :"+comp);
+	    	
+	    	      
+	    	
+	    	if(inputball == 0 || inputball>6 || inputball<0) // foul condition
+	    	{
+	    		System.out.println ("Foul!!!!");
+	    	}
+	    	else if(inputball!=comp)
+	    	{
+	    		
+	    		sumUball = sumUball + comp;
+	    	}
+	    	else if(inputball==comp)
+	    	{
+	    		System.out.println ("That's Out... That's Out...");
+	    	}
+    	}
+    		
+    	}
+    	
+}
+
+
